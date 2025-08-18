@@ -1,5 +1,6 @@
 import discord
 from contra import gen_pass
+from doble_carta import calcular 
 # La variable intents almacena los privilegios del bot
 intents = discord.Intents.default()
 # Activar el privilegio de lectura de mensajes
@@ -21,6 +22,10 @@ async def on_message(message):
         await message.channel.send("\U0001f642")
     elif message.content.startswith('$PASS'):
         await message.channel.send("ESTA ES TU COMTRASEÑA=    "+gen_pass(14))
+    elif message.content.startswith('$calc'):
+        expresion = message.content[len('$calc '):]  
+        respuesta = calcular(expresion)
+        await message.channel.send(respuesta)
     else:
         await message.channel.send(message.content)
 
